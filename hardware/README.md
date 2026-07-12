@@ -6,8 +6,6 @@ This directory contains the hardware design files for the Lumina Smart Home auto
 
 *(Please add `pcb_layout.png` and `pcb_3d.png` to this folder to view the renders here)*
 
-![PCB 3D View](pcb_3d.png)
-![PCB Routing Layout](pcb_layout.png)
 
 ## 🧩 Key Components
 
