@@ -3,8 +3,7 @@
 This directory contains the hardware design files for the Lumina Smart Home automation system. The custom PCB is designed to securely and reliably control up to 8 high-power loads using an ESP32 microcontroller.
 
 ## 🖼️ Board Renders
-
-*(Please add `pcb_layout.png` and `pcb_3d.png` to this folder to view the renders here)*
+<img width="995" height="650" alt="Image" src="https://github.com/user-attachments/assets/c713b73f-7328-433c-a96a-9c2d4ed8e40a" />
 
 
 ## 🧩 Key Components
