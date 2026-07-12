@@ -1,0 +1,30 @@
+name: led_control_app
+description: A Flutter app to control LEDs with humidity monitoring
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  firebase_core: ^3.1.1
+  firebase_database: ^11.1.0
+  firebase_auth: ^5.1.4
+  firebase_auth_web: ^5.12.3
+  google_sign_in: ^6.2.1
+  google_generative_ai: ^0.4.0
+  speech_to_text: ^6.6.1
+  flutter_tts: ^3.8.5
+  permission_handler: ^11.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true

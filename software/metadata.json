@@ -1,0 +1,7 @@
+{
+  "name": "Gemini Smart Home Elite",
+  "description": "An advanced smart home automation dashboard powered by Gemini 2.5 Flash Live API for natural voice control and agentic device management.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
