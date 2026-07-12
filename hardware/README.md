@@ -4,6 +4,7 @@ This directory contains the hardware design files for the Lumina Smart Home auto
 
 ## 🖼️ Board Renders
 <img width="995" height="650" alt="Image" src="https://github.com/user-attachments/assets/c713b73f-7328-433c-a96a-9c2d4ed8e40a" />
+<img width="1023" height="627" alt="Image" src="https://github.com/user-attachments/assets/00df21dd-dbf8-4dfe-96cb-83d88568638b" />
 
 
 ## 🧩 Key Components
