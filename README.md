@@ -8,29 +8,54 @@
 [![Firebase](https://img.shields.io/badge/Firebase-Hosted-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://led-on-off-8ef7b.web.app/)
 [![ESP32](https://img.shields.io/badge/ESP32-Firmware-E7352C?style=for-the-badge&logo=espressif&logoColor=white)](#2-esp32_code-microcontroller-firmware)
 
+<br/>
+
+<a href="https://led-on-off-8ef7b.web.app/">
+  <img src="assets/lumina_dashboard_ui.png" alt="Lumina Smart Home Dashboard" width="100%"/>
+</a>
+
 </div>
 
 ---
 
 ## 📖 Project Overview
 
-This repository contains the complete stack for the **Lumina Smart Home** automation system. The project allows users to control physical devices (like LEDs and relays) remotely via a web/mobile application. It features real-time control, an intelligent connection system, and is designed to work with custom PCB hardware.
+This repository contains the complete stack for the **Lumina Smart Home** automation system. The project allows users to control physical devices (like LEDs and relays) remotely via a web/mobile application. It features real-time telemetry, automated scene protocols, intelligent WiFi connectivity, and is designed to interface with custom PCB hardware.
 
 ### 🔗 Live Application
-> **Try the app:** [https://led-on-off-8ef7b.web.app/](https://led-on-off-8ef7b.web.app/)
+> **Live Web App:** [https://led-on-off-8ef7b.web.app/](https://led-on-off-8ef7b.web.app/)
 
 ---
 
-## 🖥️ Dashboard UI
+## 🖥️ Application UI & Features
 
-<div align="center">
+### 1. Main Dashboard View
+The web dashboard provides real-time monitoring and intuitive controls for all connected smart appliances:
 
-| Dashboard Home | ESP32 Source Code Viewer |
-|:---:|:---:|
-| <img src="software/dashboard_ui.png" alt="Lumina Dashboard" width="480"/> | <img src="software/dashboard_esp32_code.png" alt="ESP32 Code Viewer" width="480"/> |
+<p align="center">
+  <img src="assets/lumina_dashboard_ui.png" alt="Lumina Web Dashboard" width="100%"/>
+</p>
 
-<em>Lumina Smart Home — AI-powered dashboard with voice assistant, room controls, and built-in ESP32 code viewer</em>
-</div>
+* **Live Telemetry Bar:** Displays real-time Temperature (°C), Humidity (%), and Power consumption (kW).
+* **Multi-Room Navigation:** Filter devices across *All*, *Living Room*, *Kitchen*, *Bedroom*, *Office*, and *Garage*.
+* **Automated Scenarios:** Quick execution of presets such as **Morning Protocol** and **Sleep Cycle**.
+* **Lumina AI Voice Assistant:** Multilingual voice command recognition for hands-free control.
+* **Device Control Cards:** Interactive toggles for relays and lighting circuits.
+
+---
+
+### 2. Built-in ESP32 Source Code Generator & Viewer
+The application includes a built-in firmware manager that generates and displays the ready-to-flash C++ code tailored for the board configuration:
+
+<p align="center">
+  <img src="assets/lumina_esp32_code_modal.png" alt="ESP32 Source Code Viewer Modal" width="100%"/>
+</p>
+
+* **Pre-configured Pin Mappings:**
+  * **Onboard Relays (R1–R8):** GPIO 32, 33, 25, 26, 27, 14, 12, 23
+  * **External Extension Relays (R9–R14):** GPIO 22, 21, 19, 18, 5, 17
+* **One-Click Copy:** Easily copy firmware code directly into Arduino IDE or PlatformIO.
+* **Firebase Cloud RTDB Integration:** Pre-fills database URLs and credentials for immediate deployment.
 
 ---
 
@@ -40,30 +65,27 @@ The project is organized into three main components:
 
 ### 1. `hardware/` (PCB & Circuits)
 This directory contains the physical hardware designs for the smart home system.
-* Contains the Gerber files (`Gerber_Smart-house_PCB.zip`) ready for PCB manufacturing.
-* Designed to integrate the ESP32 microcontroller with relays and power management circuits for safe home automation.
+* Contains Gerber fabrication files ready for manufacturing bare boards at JLCPCB or PCBWay.
+* Integrates ESP32 with ULN2003A Darlington drivers, 8 high-power relays, flyback diode protection, and a 12V DC power circuit.
 
-<div align="center">
+<p align="center">
+  <img src="assets/pcb_3d.png" alt="PCB 3D View" width="48%"/>
+  <img src="assets/pcb_layout.png" alt="PCB Routing Layout" width="48%"/>
+</p>
 
-| 3D Board Render | PCB Routing Layout |
-|:---:|:---:|
-| ![PCB 3D View](hardware/pcb_3d.png) | ![PCB Routing Layout](hardware/pcb_layout.png) |
-
-</div>
-
-**Key Components:**
+**Key Hardware Components:**
 - **NodeMCU ESP-WROOM-32** — WiFi-enabled microcontroller
 - **2× ULN2003A (DIP16)** — Darlington transistor relay drivers
-- **8× Electromechanical Relays** — For switching high-power loads
-- **8× Flyback Diodes (D1-D8)** — Voltage spike protection
-- **8× Status LEDs (LED1-LED8)** — Visual relay state feedback
-- **12V DC Power Input** with filtering capacitors (1000µF + 10µF)
+- **8× Electromechanical Relays** — Switching high-voltage AC/DC loads
+- **8× Flyback Diodes (D1-D8)** — Inductive transient voltage protection
+- **8× Status LEDs (LED1-LED8)** — Real-time visual feedback per relay channel
+- **12V DC Power Terminal** — Dual decoupling/smoothing capacitors (1000µF + 10µF)
 
 ### 2. `esp32_code/` (Microcontroller Firmware)
 Contains the C++ firmware (`led_controller.ino`) that runs on the ESP32 microcontroller.
 * **Intelligent Connect:** Automatically scans and connects to prioritized home WiFi networks or falls back to the strongest open network.
 * **Hardware Interface:** Directly controls the GPIO pins connected to the relays/LEDs based on commands received from the software.
-* **Real-time Synchronization:** Listens for state changes and securely updates the hardware states.
+* **Real-time Synchronization:** Listens for Firebase RTDB state changes and immediately drives the corresponding relay channels.
 
 ### 3. `software/` (Application Dashboard)
 The user-facing application built to control the smart home ecosystem.
@@ -88,7 +110,7 @@ To run the web application locally:
 To flash the ESP32:
 1. Open `esp32_code/led_controller.ino` in the Arduino IDE.
 2. Select your ESP32 board and COM port.
-3. Install any required libraries mentioned in the code.
+3. Install the required libraries (`Firebase_ESP_Client`, `WiFi.h`).
 4. Compile and upload to the board.
 
 ### Hardware
@@ -102,11 +124,11 @@ To fabricate the PCB:
 
 | Layer | Technology |
 |-------|-----------|
-| **Hardware** | Custom PCB, ESP-WROOM-32, ULN2003A, 8-Channel Relays |
-| **Firmware** | Arduino (C++), WiFi, Firebase RTDB |
+| **Hardware** | Custom PCB, ESP-WROOM-32, 2× ULN2003A, 8-Channel Relays |
+| **Firmware** | Arduino (C++), WiFi, Firebase RTDB Client |
 | **Frontend** | React, TypeScript, Vite, Tailwind CSS, Flutter |
 | **AI** | Google Gemini 2.5 Flash |
-| **Backend** | Firebase Hosting, Realtime Database |
+| **Backend** | Firebase Hosting, Firebase Realtime Database |
 | **Voice** | Web Speech API, Text-to-Speech |
 
 ---
