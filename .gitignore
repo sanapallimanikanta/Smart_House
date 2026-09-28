@@ -28,12 +28,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Flutter / Dart
-.dart_tool/
-build/
-.flutter-plugins
-.flutter-plugins-dependencies
-
 # Firebase
 .firebase/
 firebase-debug.log*
