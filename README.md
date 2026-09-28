@@ -24,9 +24,12 @@ This repository contains the complete stack for the **Lumina Smart Home** automa
 ## 🖥️ Dashboard UI
 
 <div align="center">
-<img src="software/dashboard_ui.jpg" alt="Smart Home Dashboard UI" width="800"/>
-<br/>
-<em>Gemini Elite Smart OS 2.5 — AI-powered home control dashboard with voice interface</em>
+
+| Dashboard Home | ESP32 Source Code Viewer |
+|:---:|:---:|
+| <img src="software/dashboard_ui.png" alt="Lumina Dashboard" width="480"/> | <img src="software/dashboard_esp32_code.png" alt="ESP32 Code Viewer" width="480"/> |
+
+<em>Lumina Smart Home — AI-powered dashboard with voice assistant, room controls, and built-in ESP32 code viewer</em>
 </div>
 
 ---
